@@ -48,4 +48,30 @@ Importante notar que en los resolvers cada vez que yo defino una querie nueva ne
 
 ## Custom Types
 
-Ya que tenemos nuestra API en la web es hora de comenzar ha trabajar para tener una api funcional resolviendo un problema del mundo real en vez de tener un query que se está saludando, vamos a aprender ahora custom types y vamos a trabajar directamente en el código del schema 
+Ya que tenemos nuestra API en la web es hora de comenzar ha trabajar para tener una api funcional resolviendo un problema del mundo real en vez de tener un query que se está saludando, vamos a aprender ahora custom types y vamos a trabajar directamente en el código del schema.
+
+## Argumentos
+
+Vamos a usar argumentos para poder tener queries más especificas a la hora de consultar información, para ello primero vamos a ir al editor y vamos a instalar una nueva dependecia que nos va ha facilitar el trabajo con graphql, está dependecia es ``graphql-tools``.
+
+Ahora ya no vamos a utilizar buildSchema, y vamos a usar makeExecuteSchema de graphql-tools que básicamente hace los mismo que buildSchema pero de una manera más especializada, aún vamos a seguir utilizando graphql porque graphql-tools la utiliza.
+
+ahora vamos a separar la lectura del archivo de schemas en otra variable, despues está variable va a ir dentro de makeExecuteSchema dentro de un objeto que tiene 2 propiedades, que son los schemas y los resolvers.
+
+```js
+const typeDefs = readFileSync(join(__dirname, "lib", "schema.graphql"),
+  'utf-8'
+);
+const schema = makeExecutableSchema({typeDefs, resolvers});
+```
+Ahora tenemos que configurar los resolvers de una forma diferente, ahora tenemos que especificar que las funciones son un Querie y iran dentro de una propiedad Query.
+
+```js
+module.exports = {
+  Query: {
+    Courses: () => courses,
+    saludo: () => "Nuevo Saludo"
+  }
+};
+```
+
