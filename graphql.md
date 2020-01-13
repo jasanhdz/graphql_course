@@ -74,4 +74,6 @@ module.exports = {
   }
 };
 ```
+### Mutations e inputs
 
+En una api siempre necesito aveces insertar información, enviarla para que sea almacenada en graphql esto se hace con una especificación que se llama [mutation](https://graphql.org/learn/queries/#mutations) pero básicamente es un mecanismo como los queries que me permite insertar la información en la API, mutation siempre va ha transformar la información de la API
