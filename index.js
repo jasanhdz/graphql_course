@@ -8,6 +8,7 @@ const resolvers = require('./lib/resolvers.js');
 
 const app = express();
 const port = process.env.port || 3001;
+
 // definimos el schema inicial
 const typeDefs = readFileSync(join(__dirname, "lib", "schema.graphql"),
   'utf-8'

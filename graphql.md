@@ -76,4 +76,8 @@ module.exports = {
 ```
 ### Mutations e inputs
 
-En una api siempre necesito aveces insertar información, enviarla para que sea almacenada en graphql esto se hace con una especificación que se llama [mutation](https://graphql.org/learn/queries/#mutations) pero básicamente es un mecanismo como los queries que me permite insertar la información en la API, mutation siempre va ha transformar la información de la API
+En una api siempre necesito aveces insertar información, enviarla para que sea almacenada en graphql esto se hace con una especificación que se llama [mutation](https://graphql.org/learn/queries/#mutations) pero básicamente es un mecanismo como los queries que me permite insertar la información en la API, mutation siempre va ha transformar la información de la API.
+
+##
+
+En la clase pasada vimos como agregar mutation de un tipo, en está clase vamos a hacer esta clase general donde vamos a gregar un nuevo tipo, vamos a agregarle los resolvers a ese tipo, vamos a hacerle queries y vamos a hacerle mutations, vamos a definir el schema y definir el tipo.
