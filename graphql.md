@@ -81,3 +81,9 @@ En una api siempre necesito aveces insertar información, enviarla para que sea 
 ##
 
 En la clase pasada vimos como agregar mutation de un tipo, en está clase vamos a hacer esta clase general donde vamos a gregar un nuevo tipo, vamos a agregarle los resolvers a ese tipo, vamos a hacerle queries y vamos a hacerle mutations, vamos a definir el schema y definir el tipo.
+
+## Nested Types
+
+Una de las caracteristicas de graphql es que me permite a mi tener relaciones entre los tipos de una forma muy sencilla, como ya tenemos 2 tipos vamos a ver como se define una de estas:
+
+Vamos al schema y vamos a añadir a nuestro schema un campo que en este ejemplo se llamará "people" y será un array del tipo stundet. Decimos que hay un nuevo campo que es un arreglo y que cada item de ese arreglo es de tipo student 
