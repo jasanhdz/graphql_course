@@ -206,3 +206,7 @@ mutation CreateNewCourse($input: CourseInput!) {
   }
 }
 ```
+
+## Interfaces - Tipo Monitor
+
+Son muy importantes a la hora de cuando tengamos tipos muy similares para ello vamos a implementar un nuevo tipo que es el tipo monitor, vamos agregarle un monitor al curso.
