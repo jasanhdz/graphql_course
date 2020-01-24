@@ -78,7 +78,7 @@ module.exports = {
 
 En una api siempre necesito aveces insertar información, enviarla para que sea almacenada en graphql esto se hace con una especificación que se llama [mutation](https://graphql.org/learn/queries/#mutations) pero básicamente es un mecanismo como los queries que me permite insertar la información en la API, mutation siempre va ha transformar la información de la API.
 
-##
+## Creando tipo Estudiante
 
 En la clase pasada vimos como agregar mutation de un tipo, en está clase vamos a hacer esta clase general donde vamos a gregar un nuevo tipo, vamos a agregarle los resolvers a ese tipo, vamos a hacerle queries y vamos a hacerle mutations, vamos a definir el schema y definir el tipo.
 
@@ -87,3 +87,122 @@ En la clase pasada vimos como agregar mutation de un tipo, en está clase vamos 
 Una de las caracteristicas de graphql es que me permite a mi tener relaciones entre los tipos de una forma muy sencilla, como ya tenemos 2 tipos vamos a ver como se define una de estas:
 
 Vamos al schema y vamos a añadir a nuestro schema un campo que en este ejemplo se llamará "people" y será un array del tipo stundet. Decimos que hay un nuevo campo que es un arreglo y que cada item de ese arreglo es de tipo student 
+
+## Conceptos Avanzados
+
+## Alias y fragments
+
+Aquí hemos hecho consultas en nuestro API de una forma sencilla, hemos requerido una sola consulta al tiempo, ahora vemos aliases.
+
+Alias
+
+```graphql
+{
+  AllCourses: Courses{
+    _id,
+    title
+  }
+  
+  Course1: Courses {
+    _id,
+    title,
+    description
+  }
+  
+  Course2: Courses {
+    title,
+    description,
+    topic
+  }
+}
+```
+
+Fragments: 
+```graphql
+{
+  AllCourses: Courses{
+    ...CourseFields
+  }
+  
+  Course1: Courses {
+    ...CourseFields
+    teacher
+  }
+  
+  Course2: Courses {
+    ...CourseFields,
+    topic
+  }
+}
+
+fragment CourseFields on Course {
+  _id,
+  title,
+  description,
+  people {
+    _id,
+    name
+  }
+}
+
+```
+
+## Variables
+
+Ya aprendimos a realizar consultas un poco más complejas, ha utilizar fragments, el código como puedes ver se va extendiendo, pues hay un problema latente en esté tipo de consultas que puede resultar complejo y son por ejemplo cuando tenemos que hacer mutations, tengo que enviar un monto de información 
+
+```graphql
+query GetCourse2 ($course: ID!) {
+  getCourse(id: $course){
+   _id
+    title
+    people{
+      _id
+      name
+    }
+  }
+}
+```
+Requiere un objeto JSON como:
+
+```json
+{
+  "course": "5cb4b8ce75f954a0585f7be3"
+}
+```
+
+## Enums
+
+Los Enums o enumeration types son tipos de datos escalares cuyos valores son configurables. Si definimos un tipo de dato como enum sus valores posibles solamente serán aquellos que se encuentren entre los definidos en el enum.
+
+```graphql
+"Valida los tipos de nivel"
+enum Level {
+  principiante,
+  intermedio,
+  avanzada
+}
+```
+
+```graphql
+Mutation:
+mutation CreateNewCourse($input: CourseInput!) {
+  createCourse(input: $input){
+    _id
+    title
+  }
+}
+```
+
+```json
+// variable input
+{
+  "input": {
+    "title": "Curso de Java",
+    "teacher": "Santiago",
+    "description": "curso básico de java",
+    "topic": "programación",
+    "level": "principiante"
+  }
+}
+```
